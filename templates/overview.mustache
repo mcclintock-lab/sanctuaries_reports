@@ -11,6 +11,18 @@
   <p class="large">
     The proposed sanctuary includes <strong>{{state_waters}}</strong> square miles in state waters and <strong>{{fed_waters}}</strong> square miles in federal waters.
   </p>
-
 </div>
 
+<div class="reportSection">
+  <h4>Distance to Closest City with a Population Over 50,000</h4>
+  {{#has_close_city}}
+    <p class="large">
+      The proposed sanctuary is <strong>{{distance}}</strong> miles from the city of <strong>{{closest_city}}</strong>.
+    </p>
+  {{/has_close_city}}
+  {{^has_close_city}}
+    <p class="large">
+      The proposed sanctuary is not within <strong>250 miles</strong> of a city with a population greater than 50,000 people.
+    </p>
+  {{/has_close_city}}
+</div>

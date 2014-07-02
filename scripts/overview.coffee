@@ -15,6 +15,7 @@ class OverviewTab extends ReportTab
   dependencies: [
     'Size'
     'PortionInWaters'
+    'DistanceToCities'
   ]
 
   render: () ->
@@ -28,6 +29,16 @@ class OverviewTab extends ReportTab
       size = @recordSet("Size", "Size").float('SIZE_SQMI', 1)
       state_waters = @recordSet("PortionInWaters", "PortionsInWaters").float('ST_SQMI',1)
       fed_waters = @recordSet("PortionInWaters", "PortionsInWaters").float('FED_SQMI',1)
+      distance = @recordSet("DistanceToCities", "Distance").float('DIST_MI',1)
+      closest_city = @recordSet("DistanceToCities", "Distance").raw('CITY')
+      has_close_city = false
+      console.log("distance: ", distance)
+      console.log("closest city: ", closest_city)
+      if closest_city
+        if closest_city.indexOf("No city within") == 0
+          has_close_city = false
+        else
+          has_close_city = true
 
     catch e
       console.log("error: ", e)
@@ -41,6 +52,9 @@ class OverviewTab extends ReportTab
       size: size
       state_waters: state_waters
       fed_waters: fed_waters
+      has_close_city: has_close_city
+      distance: distance
+      closest_city: closest_city
       d3IsPresent: d3IsPresent
 
     @$el.html @template.render(context, partials)
