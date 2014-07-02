@@ -32,8 +32,6 @@ class OverviewTab extends ReportTab
       distance = @recordSet("DistanceToCities", "Distance").float('DIST_MI',1)
       closest_city = @recordSet("DistanceToCities", "Distance").raw('CITY')
       has_close_city = false
-      console.log("distance: ", distance)
-      console.log("closest city: ", closest_city)
       if closest_city
         if closest_city.indexOf("No city within") == 0
           has_close_city = false
