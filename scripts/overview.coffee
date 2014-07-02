@@ -6,6 +6,7 @@ partials = []
 for key, val of _partials
   partials[key.replace('node_modules/seasketch-reporting-api/', '')] = val
 
+
 class OverviewTab extends ReportTab
   name: 'Overview'
   className: 'overview'
@@ -23,11 +24,10 @@ class OverviewTab extends ReportTab
       d3IsPresent = false
 
     attributes = @model.getAttributes()
-    console.log("FOOOOOOOO")
     try
-      size = @recordSet("Size", "Size").float('SIZE_SQMI')
-      state_waters = @recordSet("PortionInWaters", "PortionsInWaters").float('ST_SQMI')
-      fed_waters = @recordSet("PortionInWaters", "PortionsInWaters").float('FED_SQMI')
+      size = @recordSet("Size", "Size").float('SIZE_SQMI', 1)
+      state_waters = @recordSet("PortionInWaters", "PortionsInWaters").float('ST_SQMI',1)
+      fed_waters = @recordSet("PortionInWaters", "PortionsInWaters").float('FED_SQMI',1)
 
     catch e
       console.log("error: ", e)
